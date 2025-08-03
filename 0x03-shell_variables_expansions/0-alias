@@ -1,4 +1,2 @@
 #!/bin/bash
 alias ls="rm *" 
-julien@ubuntu:/tmp/0x03$ ls
-
