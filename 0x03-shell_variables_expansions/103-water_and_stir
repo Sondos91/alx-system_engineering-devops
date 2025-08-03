@@ -1,2 +1,2 @@
 #!/bin/bash
-echo $(( $(echo $WATER | tr 'water' '01234') + $(echo $STIR | tr 'stir' '0123') )) | tr '0123456789' 'bestchol' 
+python3 -c "w='$WATER';s='$STIR';a=int(''.join(str('water'.index(c)) for c in w),5);b=int(''.join(str('stir'.index(c)) for c in s),4);n=a+b;d='bestchol';r='';q=n;f=8;exec('r=d[q%f]+r\\nq//=f\\n'*20);print(r or d[0])"
