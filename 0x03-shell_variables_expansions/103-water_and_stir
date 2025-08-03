@@ -1,0 +1,56 @@
+#!/bin/bash
+
+# Define the digit sets for each base
+water="waetr"
+stir="triti."
+bestchol="bestchol"
+
+# Function to convert from custom base to decimal
+to_decimal() {
+  digits="$1"
+  value="$2"
+  len=${#digits}
+  num=0
+  i=0
+  while [ "$i" -lt "${#value}" ]
+  do
+    c=$(printf "%s" "$value" | cut -c $((i+1)))
+    j=0
+    while [ "$j" -lt "$len" ]
+    do
+      d=$(printf "%s" "$digits" | cut -c $((j+1)))
+      if [ "$c" = "$d" ]
+      then
+        num=$((num * len + j))
+        break
+      fi
+      j=$((j+1))
+    done
+    i=$((i+1))
+  done
+  echo "$num"
+}
+
+# Function to convert from decimal to custom base
+from_decimal() {
+  digits="$1"
+  num="$2"
+  len=${#digits}
+  res=""
+  if [ "$num" -eq 0 ]
+  then
+    res=$(printf "%s" "$digits" | cut -c 1)
+  fi
+  while [ "$num" -gt 0 ]
+  do
+    rem=$((num % len))
+    res=$(printf "%s" "$digits" | cut -c $((rem+1)))"$res"
+    num=$((num / len))
+  done
+  echo "$res"
+}
+
+wdec=$(to_decimal "$water" "$WATER")
+sdec=$(to_decimal "$stir" "$STIR")
+sum=$((wdec + sdec))
+from_decimal "$bestchol" "$sum"
