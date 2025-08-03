@@ -1,2 +1,2 @@
 #!/bin/bash
-printf "%o" $(( $(echo $WATER | tr 'waetr' '01234') + $(echo $STIR | tr 'triti.' '012345') )) | tr '01234567' 'bestchol'
+printf "%o" $(( $(echo $WATER | tr 'waetr' '01234' | rev | sed 's/./& /g' | tr ' ' '\n' | awk '{sum+=$1*5^(NR-1)} END{print sum}') + $(echo $STIR | tr 'triti.' '012345' | rev | sed 's/./& /g' | tr ' ' '\n' | awk '{sum+=$1*6^(NR-1)} END{print sum}') )) | tr '01234567' 'bestchol'
