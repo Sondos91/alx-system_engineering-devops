@@ -1,5 +1,5 @@
 # Simple Web Stack Infrastructure Design
-
+![Simple Web Stack Infrastructure](single_server.jpeg)
 ## Overview
 This document describes a one-server web infrastructure that hosts a website reachable via www.foobar.com. The infrastructure follows a simple LAMP stack architecture.
 
